@@ -341,5 +341,26 @@ ORDER BY Year, AnimalType, FirstName, LastName;
 -- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 -- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-- Generate a series 
+WITH
+	daysOf2019 (day)
+	AS
+	(
+					SELECT CAST('20190101' AS DATE)
+		UNION ALL
+			SELECT DATEADD(DAY, 1, day)
+			FROM DaysOf2019
+			WHERE day < CAST('20191231' AS DATE)
+	)
+SELECT *
+FROM DaysOf2019
+ORDER BY day ASC
+OPTION
+(MAXRECURSION
+365);
+-- (365 rows affected)
+-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 
 
